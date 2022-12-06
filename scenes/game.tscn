@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhjdeem2goyur"]
+[gd_scene load_steps=8 format=3 uid="uid://dhjdeem2goyur"]
 
 [ext_resource type="PackedScene" uid="uid://j11xbmpqg2iv" path="res://scenes/player.tscn" id="1_tu6g8"]
 
@@ -16,6 +16,9 @@ size = Vector3(100, 1, 100)
 
 [sub_resource type="BoxMesh" id="BoxMesh_4cpch"]
 size = Vector3(100, 1, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n5ij8"]
+size = Vector3(4, 10, 4)
 
 [node name="Game" type="Node3D"]
 
@@ -38,3 +41,7 @@ shape = SubResource("BoxShape3D_2xnup")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 mesh = SubResource("BoxMesh_4cpch")
+
+[node name="Box" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, 5)
+mesh = SubResource("BoxMesh_n5ij8")
