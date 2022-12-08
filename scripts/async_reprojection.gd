@@ -12,5 +12,10 @@ func _ready() -> void:
 	var frame_duration = 1.0/float(target_fps)
 	timer.start(frame_duration)
 
+
 func _on_timer_timeout():
 	viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
+
+
+func _input(event: InputEvent):
+	viewport.push_input(event)
