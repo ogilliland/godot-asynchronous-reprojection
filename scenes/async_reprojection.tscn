@@ -1,10 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dp84cjhhhsqp0"]
+[gd_scene load_steps=10 format=3 uid="uid://dp84cjhhhsqp0"]
 
 [ext_resource type="PackedScene" uid="uid://dhjdeem2goyur" path="res://scenes/game.tscn" id="1_2lvuc"]
-[ext_resource type="Script" path="res://scripts/async_camera.gd" id="1_4t4va"]
 [ext_resource type="Script" path="res://scripts/async_reprojection.gd" id="1_11ock"]
 [ext_resource type="Shader" path="res://materials/projection.gdshader" id="2_4gbw1"]
-[ext_resource type="Script" path="res://scripts/projection.gd" id="2_ddv64"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i4c07"]
 
@@ -29,6 +27,8 @@ size = Vector2(20, 10)
 [node name="AsyncReprojection" type="Node3D"]
 script = ExtResource("1_11ock")
 viewport_path = NodePath("SubViewport")
+projection_path = NodePath("Projection")
+async_camera_path = NodePath("AsyncCamera")
 timer_path = NodePath("Timer")
 
 [node name="SubViewport" type="SubViewport" parent="."]
@@ -41,12 +41,8 @@ render_target_update_mode = 1
 [node name="Projection" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 mesh = SubResource("QuadMesh_mwmad")
-script = ExtResource("2_ddv64")
-viewport_path = NodePath("../SubViewport")
 
 [node name="AsyncCamera" type="Camera3D" parent="."]
-script = ExtResource("1_4t4va")
-viewport_path = NodePath("../SubViewport")
 
 [node name="Timer" type="Timer" parent="."]
 
