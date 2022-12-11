@@ -1,5 +1,7 @@
 extends Node3D
 
+const viewport_distance : float = 10.0
+
 @export var viewport_path : NodePath
 @export var projection_path : NodePath
 @export var async_camera_path : NodePath
@@ -25,6 +27,9 @@ func _ready() -> void:
 
 func _on_timer_timeout():
 	viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
+	var normal = async_camera.project_ray_normal(0.5 * viewport.get_visible_rect().size)
+	projection.global_position = async_camera.global_position + viewport_distance * normal
+	projection.look_at(async_camera.global_position + 2 * viewport_distance * normal)
 
 
 func _process(delta: float) -> void:
@@ -34,6 +39,8 @@ func _process(delta: float) -> void:
 
 func _resize() -> void:
 	viewport.size = DisplayServer.window_get_size()
+	projection.mesh.size.y = 2 * viewport_distance * tan(deg_to_rad(0.5 * async_camera.fov))
+	projection.mesh.size.x = projection.mesh.size.y * viewport.size.x / viewport.size.y
 
 
 func _input(event: InputEvent):

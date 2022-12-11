@@ -39,7 +39,6 @@ render_target_update_mode = 1
 [node name="Game" parent="SubViewport" instance=ExtResource("1_2lvuc")]
 
 [node name="Projection" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 mesh = SubResource("QuadMesh_mwmad")
 
 [node name="AsyncCamera" type="Camera3D" parent="."]
